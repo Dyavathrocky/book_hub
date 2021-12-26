@@ -125,3 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.CustomUser' # to use newly created user model in users app models.py file
+
+LOGIN_REDIRECT_URL = 'home' #informing user after successfull login it will rediect to home
+
+LOGOUT_REDIRECT_URL = 'home'#informing user after successfull logout it will rediect to home
