@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third party
+    'crispy_forms', # for loading crispy forms pages//
     
     #local apps
 
@@ -129,3 +132,18 @@ AUTH_USER_MODEL = 'users.CustomUser' # to use newly created user model in users 
 LOGIN_REDIRECT_URL = 'home' #informing user after successfull login it will rediect to home
 
 LOGOUT_REDIRECT_URL = 'home'#informing user after successfull logout it will rediect to home
+
+
+STATIC_URL = '/static/' #to store and collect satics ....
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] #to store static files locally 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # STATIC_ROOT 121 is the location of static files for production so it must be set to
+                                                        #a different name, typically staticfiles
+
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    ]
+
+# django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # to load crispy forms
