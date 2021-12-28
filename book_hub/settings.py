@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mpoveej^z-98#f9rwap&+vlnbv0#$4u+3se506avotsq(w$&^5'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -37,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     #third party
     'crispy_forms', # for loading crispy forms pages//
+    'allauth', # for auth app to intigarte all social app
+    'allauth.account',
+    'allauth.socialaccount',
     
     #local apps
 
@@ -129,9 +135,7 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.CustomUser' # to use newly created user model in users app models.py file
 
-LOGIN_REDIRECT_URL = 'home' #informing user after successfull login it will rediect to home
 
-LOGOUT_REDIRECT_URL = 'home'#informing user after successfull logout it will rediect to home
 
 
 STATIC_URL = '/static/' #to store and collect satics ....
@@ -147,3 +151,28 @@ STATICFILES_FINDERS = [
 
 # django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # to load crispy forms
+
+#Django all auth config
+LOGIN_REDIRECT_URL = 'home' #informing user after successfull login it will rediect to home
+
+ACCOUNT_LOGOUT_REDIRECT = 'home'#informing user after successfull logout it will rediect to home
+
+
+SITE_ID = 1 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', 
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_SESSION_REMEBER = True #TO REMEMBER ME BUTTON 
+
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False # to remove extra password entry field in django
+
+
+ACCOUNT_USERNAME_REQUIRED = False #to remove sername field
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # to make Email as mandate method
+ACCOUNT_EMAIL_REQUIRED = True # to make email mandate
+ACCOUNT_UNIQUE_EMAIL = True # use only unique emails to create user
