@@ -25,9 +25,12 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     #include users app
-    path('accounts/', include('users.urls')),
+    #path('accounts/', include('users.urls')),
 
     #include pages app
     path('', include('pages.urls')),
+
+    #include books app
+    path('books/', include('books.urls')),
 
 ]

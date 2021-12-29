@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig', # for pages app
+    'books.apps.BooksConfig', #for books app
 ]
 
 MIDDLEWARE = [
@@ -165,7 +166,15 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 ACCOUNT_SESSION_REMEBER = True #TO REMEMBER ME BUTTON 
 
@@ -176,3 +185,4 @@ ACCOUNT_USERNAME_REQUIRED = False #to remove sername field
 ACCOUNT_AUTHENTICATION_METHOD = 'email' # to make Email as mandate method
 ACCOUNT_EMAIL_REQUIRED = True # to make email mandate
 ACCOUNT_UNIQUE_EMAIL = True # use only unique emails to create user
+DEFAULT_FROM_EMAIL = 'ds@rakesh_bookstore.com'
