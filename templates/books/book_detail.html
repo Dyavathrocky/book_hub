@@ -6,9 +6,19 @@
 {% block content %}
 
     <div class="book-detail">
+        <!--<h3>test {{ book.object }}</h3>-->
         <h3>seral number : {{ book.pk }}</h3>
         <h2><a href="">{{ book.title }}</a></h2>
         <p>Author: {{ book.author }}</p>
         <p>Price: {{ book.price }}</p>
+    </div>
+    <div>
+        <h2>Reviews</h2>
+        <ul>
+            <!--<h3>test {{ book.reviews.all }}</h3>-->
+            {% for review in book.reviews.all %}
+                <li>{{ review.review }}({{ review.author }})</li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock content %}
