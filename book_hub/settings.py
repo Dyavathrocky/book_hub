@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig', # for pages app
     'books.apps.BooksConfig', #for books app
+    'orders.apps.OrdersConfig', #for orders app
 ]
 
 MIDDLEWARE = [
@@ -189,3 +190,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email' # to make Email as mandate method
 ACCOUNT_EMAIL_REQUIRED = True # to make email mandate
 ACCOUNT_UNIQUE_EMAIL = True # use only unique emails to create user
 DEFAULT_FROM_EMAIL = 'ds@rakesh_bookstore.com'
+
+
+#stripe
+STRIPE_TEST_PUBLISHABLE_KEY=config('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY=config('STRIPE_TEST_SECRET_KEY')
