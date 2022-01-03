@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import OrdersPageView
+from .views import OrdersPageView , ChargeView
 
 # Create your views here.
 
 urlpatterns = [
-    path('', OrdersPageView.as_view(),name='orders')
+    path('charge/', ChargeView, name='charge'),
+    path('', OrdersPageView.as_view(),name='orders'),
 ]
